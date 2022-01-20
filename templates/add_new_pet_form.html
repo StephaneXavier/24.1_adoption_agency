@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+{%block title%}New Pet Form{%endblock%}
+
+{%block content%}
+<div class="container">
+    <h1 class="display-1 text-center">Add new pet form</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form id='pet-add-form' method="POST">
+
+                {{form.hidden_tag()}}
+                {%for field in form
+                if field.widget.input_type != 'hidden'%}
+                
+                {{field.label}}
+                {{field(class_='form-control')}}
+                {%for error in field.errors%}
+
+                <small class="form-text text-danger">{{error}}</small>
+
+                {%endfor%}
+                {%endfor%}
+
+                <button type="submit" class="btn btn-success">Add new pet!</button>
+                <a href="/" class="btn btn-info">Home Page</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{%endblock%}
